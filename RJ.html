@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine 💘</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 360px;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      width: 120px;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: #adb5bd;
+      color: white;
+      position: absolute;
+      right: 0;
+      top: 60px;
+    }
+
+    /* ===== POPUP ===== */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .popup {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 85%;
+      max-width: 300px;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .popup h2 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    .popup button {
+      margin-top: 15px;
+      background: #ff4d6d;
+      color: white;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h1>Will you be my Valentine? 💘</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="showPopup()">Yes 💖</button>
+      <button id="no" ontouchstart="runAway()" onmouseover="runAway()">No 💔</button>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <h2>Yayyyy! 💕</h2>
+      <p>You just made my Valentine perfect 😍</p>
+      <button onclick="closePopup()">Aww 🥰</button>
+    </div>
+  </div>
+
+  <script>
+    function showPopup() {
+      document.getElementById("overlay").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    function runAway() {
+      const noBtn = document.getElementById("no");
+      const card = document.getElementById("card");
+
+      const maxX = card.clientWidth - noBtn.clientWidth;
+      const maxY = card.clientHeight - noBtn.clientHeight;
+
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
+    }
+  </script>
+
+</body>
+</html>
